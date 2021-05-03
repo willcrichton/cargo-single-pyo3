@@ -57,23 +57,24 @@ fn create_dir(
   crate_name: &str,
   module_name: &str,
   deps: &[String],
-  use_github: bool,
+  pyo3_version: &str,
 ) -> Result<()> {
   let mut dependencies = HashMap::new();
-  let (git, branch) = if use_github {
+  let (version, git, branch) = if pyo3_version == "github" {
     (
+      "*".into(),
       Some("https://github.com/PyO3/pyo3".into()),
       Some("main".into()),
     )
   } else {
-    (None, None)
+    (pyo3_version.into(), None, None)
   };
 
   dependencies.insert(
     "pyo3".into(),
     CargoDependency {
-      version: "0.13".into(),
       features: vec!["extension-module".into()],
+      version,
       git,
       branch,
     },
@@ -111,8 +112,8 @@ fn run() -> Result<()> {
     (author: "Will Crichton <crichton.will@gmail.com>")
     (about: "Builds a single Rust file as a Python module via pyo3")
     (@arg verbose: -v --verbose)
-    (@arg github: --github)
     (@arg release: --release)
+    (@arg pyo3: --pyo3 +takes_value "Pyo3 version. Use \"github\" to get latest from main branch.")
     (@arg INPUT: +required "Input file")
   }
   .get_matches_from(&clap_args);
@@ -141,7 +142,7 @@ fn run() -> Result<()> {
     &crate_name,
     &module_name,
     &deps,
-    matches.is_present("github"),
+    matches.value_of("pyo3").unwrap_or("*"),
   )?;
 
   let is_release = matches.is_present("release");
