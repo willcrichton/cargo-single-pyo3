@@ -105,6 +105,7 @@ fn create_dir(
 }
 
 fn run() -> Result<()> {
+  let clap_args = env::args().skip(1).collect::<Vec<_>>();
   let matches = clap_app! {single_pyo3 =>
     (version: "0.1")
     (author: "Will Crichton <crichton.will@gmail.com>")
@@ -114,7 +115,7 @@ fn run() -> Result<()> {
     (@arg release: --release)
     (@arg INPUT: +required "Input file")
   }
-  .get_matches();
+  .get_matches_from(&clap_args);
 
   let verbose = matches.is_present("verbose");
   let input = matches.value_of("INPUT").unwrap();
