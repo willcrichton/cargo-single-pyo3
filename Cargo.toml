@@ -2,6 +2,7 @@
 name = "cargo-single-pyo3"
 version = "0.1.0"
 authors = ["Will Crichton <wcrichto@cs.stanford.edu>"]
+description = "Generate a Python module from a single Rust file."
 edition = "2018"
 homepage = "https://github.com/willcrichton/cargo-single-pyo3"
 repository = "https://github.com/willcrichton/cargo-single-pyo3"
