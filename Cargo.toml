@@ -7,7 +7,6 @@ edition = "2018"
 homepage = "https://github.com/willcrichton/cargo-single-pyo3"
 repository = "https://github.com/willcrichton/cargo-single-pyo3"
 license = "MIT"
-license-file = "LICENSE"
 
 [dependencies]
 clap = "2.33"
