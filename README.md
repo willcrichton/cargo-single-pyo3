@@ -1,4 +1,4 @@
-# cargo-single-pyo3
+# cargo-single-pyo3 ![crates.io](https://img.shields.io/crates/v/cargo-single-pyo3.svg)
 
 Utility to build Python modules from a single Rust files via [pyo3](https://github.com/PyO3/pyo3). Inspired by [cargo-single](https://github.com/inejge/cargo-single).
 
@@ -54,4 +54,4 @@ $ python3
 
 **Build process:** the tool creates a Cargo project in your temporary directory that is associated with the module name, e.g. `/tmp/foo`. This could cause any usual problems of conflicts between users or projects on the same machine, so be careful (or submit a PR if you have a different preference).
 
-**Pyo3 version:** the Cargo dependency on pyo3 is automatically generated. If you need to change the version, use the `--pyo3` flag, e.g. `--pyo3 0.13`. You can also use `--pyo3 github` to use the latest on main branch. At the time of writing, this option was necessary to build on OS X.
+**Pyo3 version:** the Cargo dependency on pyo3 is automatically generated. If you need to change the version, use the `--pyo3` flag, e.g. `--pyo3 0.13`. You can also use `--pyo3 github` to use the latest on main branch. As of 5/7/21, the github option was necessary to build on OS X.
