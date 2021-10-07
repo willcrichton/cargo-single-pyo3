@@ -20,6 +20,7 @@ use pyo3::wrap_pyfunction;
 
 #[pyfunction]
 fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
+  // using rand to demonstrate library support
   let c = rand::thread_rng().gen_range(0 ..= 1);
   Ok((a + b + c).to_string())
 }
@@ -45,7 +46,7 @@ $ python3
 >>> foo.sum_as_string(1, 2)
 '3'
 >>> foo.sum_as_string(2, 2)
-'4'
+'5'
 ```
 
 ## Usage notes
