@@ -44,7 +44,7 @@ $ python3
 >>> import foo
 >>> foo.sum_as_string(1, 2)
 '3'
->>> foo.sum_as_string(1, 2)
+>>> foo.sum_as_string(2, 2)
 '4'
 ```
 
