@@ -102,6 +102,24 @@ fn create_dir(
   fs::write(cargo_dir.join("Cargo.toml"), config_contents)?;
   fs::copy(input, src_dir.join("lib.rs"))?;
 
+  let dot_cargo = cargo_dir.join(".cargo");
+  fs::create_dir_all(&dot_cargo)?;
+  fs::write(
+    dot_cargo.join("config.toml"),
+    r#"
+[target.x86_64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
+[target.aarch64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]"#,
+  )?;
+
   Ok(())
 }
 
