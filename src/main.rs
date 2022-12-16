@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path::Path;
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 #[derive(Serialize)]
 struct CargoConfig {
@@ -168,13 +168,15 @@ fn run() -> Result<()> {
   if is_release {
     args.push("--release");
   }
-  let output = Command::new("cargo")
+  let status = Command::new("cargo")
     .args(&args)
     .current_dir(cargo_dir)
-    .output()?;
+    .stdout(Stdio::inherit())
+    .stderr(Stdio::inherit())
+    .status()?;
 
-  if !output.status.success() {
-    bail!("{}", String::from_utf8(output.stderr)?);
+  if !status.success() {
+    bail!("cargo failed");
   }
 
   let lib_name = format!("lib{}.{}", module_name, env::consts::DLL_EXTENSION);
