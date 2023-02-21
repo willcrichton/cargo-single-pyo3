@@ -145,7 +145,7 @@ fn run() -> Result<()> {
     .context("No file stem")?
     .to_str()
     .context("to_string")?;
-  let module_name = crate_name.replace("-", "_");
+  let module_name = crate_name.replace('-', "_");
 
   let cargo_dir = &env::temp_dir().join(crate_name);
   if verbose {
@@ -155,9 +155,9 @@ fn run() -> Result<()> {
   let deps = collect_deps(input)?;
 
   create_dir(
-    &cargo_dir,
+    cargo_dir,
     input,
-    &crate_name,
+    crate_name,
     &module_name,
     &deps,
     matches.value_of("pyo3").unwrap_or("*"),
