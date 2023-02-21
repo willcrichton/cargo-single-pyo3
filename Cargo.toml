@@ -1,6 +1,6 @@
 [package]
 name = "cargo-single-pyo3"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Will Crichton <wcrichto@cs.stanford.edu>"]
 description = "Generate a Python module from a single Rust file."
 edition = "2018"
